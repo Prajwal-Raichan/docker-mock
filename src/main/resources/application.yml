@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: crud-mock
+  profiles:
+    active: dev
+
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    platform: org.hibernate.dialect.H2Dialect
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true
+    open-in-view: true
+
+server:
+  port: 8787
+
+logging:
+  level:
+    root: INFO
+    com.merin.crud-mock: TRACE
+  file:
+    name: Global-Logs/crud-mock.log
+
+management:
+  endpoints:
+    web:
+      exposure: # Enable all the actuator endpoints
+        include: "*"
+  health:
+    show-details: always
